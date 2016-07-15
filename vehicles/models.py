@@ -14,3 +14,27 @@ class Manufacturer(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Model(models.Model):
+    CAR_TYPE = 'C'
+    MOTORCYCLE_TYPE = 'M'
+
+    TYPES = (
+        (CAR_TYPE, _('Carro')),
+        (MOTORCYCLE_TYPE, _('Moto'))
+    )
+
+    type = models.CharField(_('tipo'), max_length=1, choices=TYPES)
+    name = models.CharField(_('nome'), max_length=60)
+    manufacturer = models.ForeignKey(Manufacturer, verbose_name=_('montadora'))
+
+    class Meta:
+        app_label = 'vehicles'
+        ordering = ['name']
+        verbose_name = _('Modelo')
+        verbose_name_plural = _(u'Modelos')
+
+    def __str__(self):
+        return '%s %s' % (self.manufacturer.name, self.name)
+
