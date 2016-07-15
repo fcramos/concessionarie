@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from vehicles.models import Manufacturer, Model
-from vehicles.serializers import ManufacturerSerializer, ModelSerializer
+from vehicles.models import Manufacturer, Model, Vehicle
+from vehicles.serializers import ManufacturerSerializer, ModelSerializer, VehicleSerializer
 
 
 class ManufacturerViewSet(viewsets.ModelViewSet):
@@ -14,3 +14,9 @@ class ModelViewSet(viewsets.ModelViewSet):
     queryset = Model.objects.all()
     serializer_class = ModelSerializer
     search_fields = ('name', 'manufacturer', 'type')
+
+
+class VehicleViewSet(viewsets.ModelViewSet):
+    queryset = Vehicle.objects.all()
+    serializer_class = VehicleSerializer
+    search_fields = ('model', 'color', 'mileage', 'engine')

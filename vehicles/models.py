@@ -38,3 +38,18 @@ class Model(models.Model):
     def __str__(self):
         return '%s %s' % (self.manufacturer.name, self.name)
 
+
+class Vehicle(models.Model):
+    model = models.ForeignKey(Model)
+    color = models.CharField(_('cor'), max_length=60)
+    mileage = models.PositiveIntegerField(_('quilometragem'), default=0)
+    engine = models.PositiveIntegerField(_('motor'), default=0)
+
+    class Meta:
+        app_label = 'vehicles'
+        ordering = ['model']
+        verbose_name = _(u'Veículo')
+        verbose_name_plural = _(u'Veículos')
+
+    def __str__(self):
+        return str(self.model)
