@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from rest_framework import viewsets
 
 from vehicles.models import Manufacturer, Model, Vehicle
@@ -20,3 +21,7 @@ class VehicleViewSet(viewsets.ModelViewSet):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
     search_fields = ('model', 'color', 'mileage', 'engine')
+
+
+class HomeView(TemplateView):
+    template_name = 'vehicles/index.html'
