@@ -1,9 +1,12 @@
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Concessionária</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}vehicles/css/bootstrap.css">
+    {% compress css %}
+      <link rel="stylesheet" href="{{ STATIC_URL }}vehicles/css/bootstrap.css">
+    {% endcompress %}
   </head>
   <body ng-app="concessionaireApp" style="padding-top: 70px">
 
@@ -30,9 +33,10 @@
     <div class="container">
       <div class="row" ng-view></div>
     </div>
-
-    <script src="{{ STATIC_URL }}vehicles/js/components/angular.js"></script>
-    <script src="{{ STATIC_URL }}vehicles/js/components/angular-route.js"></script>
-    <script src="{{ STATIC_URL }}vehicles/js/app.js"></script>
+    {% compress js %}
+      <script src="{{ STATIC_URL }}vehicles/js/components/angular.js"></script>
+      <script src="{{ STATIC_URL }}vehicles/js/components/angular-route.js"></script>
+      <script src="{{ STATIC_URL }}vehicles/js/app.js"></script>
+    {% endcompress %}
   </body>
 </html>
